@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "vendor": {
+        "conan": {}
+    },
+    "include": [
+        "/mnt/HDD-Ubuntu/documents/phd/groningen/contour/code/contour/programs/build/CMakePresets.json"
+    ]
+}

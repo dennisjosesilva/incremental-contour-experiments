@@ -1,0 +1,10 @@
+;image;nnodes;width;height;npixels;runtime_incr_contour;runtime_non_incr_contour
+0;chessboard16.pgm;129;16;16;256;0;0
+1;chessboard32.pgm;513;32;32;1024;0;0
+2;chessboard64.pgm;2049;64;64;4096;0;0
+3;chessboard128.pgm;8193;128;128;16384;2;3
+4;chessboard256.pgm;32769;256;256;65536;13;16
+5;chessboard512.pgm;131073;512;512;262144;61;59
+6;chessboard1024.pgm;524289;1024;1024;1048576;298;231
+7;chessboard2048.pgm;2097153;2048;2048;4194304;1441;940
+8;chessboard4096.pgm;8388609;4096;4096;16777216;6404;3736

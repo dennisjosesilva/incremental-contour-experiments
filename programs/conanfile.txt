@@ -1,0 +1,7 @@
+[requires]
+morphotree/0.0.1
+stb/cci.20210910
+
+[generators]
+CMakeDeps
+CMakeToolchain

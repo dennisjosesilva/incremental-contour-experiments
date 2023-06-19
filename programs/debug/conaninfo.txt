@@ -1,0 +1,39 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=11
+    os=Linux
+
+[requires]
+    morphotree/0.0.1
+    stb/cci.20210910
+
+[options]
+
+
+[full_settings]
+    arch=x86_64
+    arch_build=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=11
+    os=Linux
+    os_build=Linux
+
+[full_requires]
+    morphotree/0.0.1@dennisjosesilva/dev:92f60e736cd6b2da01c0adb5357c1bcedea44f73
+    stb/cci.20210910:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+
+[full_options]
+    morphotree:compiler=gcc
+    morphotree:shared=False
+    stb:with_deprecated=True
+
+[recipe_hash]
+
+
+[env]
+

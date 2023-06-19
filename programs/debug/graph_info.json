@@ -1,0 +1,22 @@
+{
+ "options": [
+  [
+   "morphotree:compiler",
+   "gcc"
+  ],
+  [
+   "morphotree:shared",
+   "False"
+  ],
+  [
+   "stb:with_deprecated",
+   "True"
+  ]
+ ],
+ "root": {
+  "name": null,
+  "version": null,
+  "user": null,
+  "channel": null
+ }
+}
