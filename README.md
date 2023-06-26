@@ -49,22 +49,22 @@ Now, everything is set up to install morphotree as a dependency of our programs.
 conan install . --output-folder=build --building=missing
 ```
 
-It will install the dependencies (morphotree) described in conanfile.txt, will generate the cmake setup files in the "build" directory and will building the source code if it does not find the binary at the conan local cache. 
+It will install the dependencies (morphotree) described in conanfile.txt by generating the cmake setup files in the "build" directory and build the source code if it does not find the binary at the conan local cache. 
 
-The next step is to compile the programs using CMake. To to this we go the "build" directory and use CMake to generate the building files as follows:
+The next step is to compile the programs using CMake. To do this, we go the "build" directory and use CMake to generate the building files as follows:
 
 ```bash
 cd build 
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 ```
 
-By doing so, CMake will generates the files that can be compiled by a C++ compile. We can, generally, compile the source code using the default CMake options running:
+By doing so, CMake will generate the files that can be compiled by a C++ compiler. We can, generally, compile the source code using the default CMake options running:
 
 ```bash
 cmake --build .
 ```
 
-Finally, everything is compiled and ready to run.  After this process, we should have the following programs and its respectively parameters in the build directory:
+Finally, everything is compiled and ready to run.  After this process, we should have the following programs  (with respectively required parameters) in the build directory:
 
 * **perf_incr_contour  <input_image_path>**: It runs and show the elapsed time of the incremental contour computation of the max-tree of the "input image" (read from <input_image_path>)  implemeted by morphotree library.
 
@@ -98,7 +98,7 @@ There is a script in Python in "analyse-code" directory which can be used to gen
 python gen_checkbox_pattern.py <N> <output_file_name>
 ```
 
-inside "analyse-code" where <N> defines the size NxN of the squares of the outout image and <output_file_name> defines the location and filename of the generated image.
+inside "analyse-code" where <N> defines the size NxN of the squares of the output image and <output_file_name> defines the location and filename of the generated image.
 
 # 3. Generating the runtime of the algorithms
 
