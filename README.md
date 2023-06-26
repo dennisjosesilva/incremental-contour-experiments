@@ -4,6 +4,8 @@ This repos
 
 Dennis J. Silva,  Ronaldo F. Hashimoto, Jiri Kosinka, Jos B.T.M. Roerdink, Wonder A.L. Alves, Alexandre Morimitsu
 
+![](img/goldhill-highlight.png)
+
 ## Abstract
 
 A component tree is a graph representation that encodes the connected components 
@@ -19,7 +21,7 @@ The software needs a C++ compiler and [conan v2](https://conan.io/) to build.  I
 
 ### 1.1. Manual dependency installation
 
-To install a Conan package, we need to run a Conan command at the root of the repositories on the links down below. 
+To install a Conan package, we need to run a Conan command at the root of the repository on the link down below. 
 
 - [morphotree library](https://github.com/dennisjosesilva/morphotree) 
 
@@ -88,6 +90,20 @@ bash perfom_check_dataset.sh
 
 As the results show our incremental algorithm produces the same result as the non-incremental (brute-force, reconstruction-based approach) for all images in our dataset for all combination of adjacencies for the max-tree and contour.
 
-TODO 
+# 2. Generating chessboard (checkboard) images
+
+There is a script in Python in "analyse-code" directory which can be used to generated the chessboard images. It requires *numpy* and *imageio* packages. To run, we can just run:
+
+```bash
+python gen_checkbox_pattern.py <N> <output_file_name>
+```
+
+inside "analyse-code" where <N> defines the size NxN of the squares of the outout image and <output_file_name> defines the location and filename of the generated image.
+
+# 3. Generating the runtime of the algorithms
+
+TODO:
+
+
 
 
