@@ -1,5 +1,3 @@
-This repos
-
 # Incremental component tree contour computation
 
 Dennis J. Silva,  Ronaldo F. Hashimoto, Jiri Kosinka, Jos B.T.M. Roerdink, Wonder A.L. Alves, Alexandre Morimitsu
@@ -103,7 +101,5 @@ inside "analyse-code" where <N> defines the size NxN of the squares of the outpu
 # 3. Generating the runtime of the algorithms
 
 TODO:
-
-
 
 
