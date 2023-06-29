@@ -90,16 +90,48 @@ As the results show our incremental algorithm produces the same result as the no
 
 # 2. Generating chessboard (checkboard) images
 
-There is a script in Python in "analyse-code" directory which can be used to generated the chessboard images. It requires *numpy* and *imageio* packages. To run, we can just run:
+There is a script in Python in "analyse-code" directory which can be used to generate the chessboard images. It requires *numpy* and *imageio* packages. To run, we can just run:
 
 ```bash
 python gen_checkbox_pattern.py <N> <output_file_name>
 ```
 
-inside "analyse-code" where <N> defines the size NxN of the squares of the output image and <output_file_name> defines the location and filename of the generated image.
+inside "analyse-code" where <N> defines the NxN number of squares of the output image and <output_file_name> defines the location and filename of the generated image.
 
 # 3. Generating the runtime of the algorithms
 
-TODO:
+The scripts to generate the ".csv" files used for the runtime analysis in the [Google Colab page]([paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)) are available in the "analysis-code" directory. They required morphotreepy library which can be installed following the instruction on its [GitHub page]([GitHub - dennisjosesilva/morphotree: A simple morphological tree filter prototyping library](https://github.com/dennisjosesilva/morphotree)), *pandas*, and *imageio* libraries. In this directory, we have the following script to generate the runtime dataset:
 
+* **gen_runtime_2.py -i <input_base_path> -o <output_file_name> -e <rhn|rnh|nhr|nrh|hnr|hrn>**: It generates a csv file describing the runtime experiments of our dataset and save it as <output_file_name>.  The images used for the experiments are located at <input_base_path> directory and the order of the execution of the algorithm is defined by the string followed by **-e** (the string s defined next).
+* **gen_runtime_chessboard_csv_2.py -i <input_base_path> -o <output_file_name> -e <rhn|rnh|nhr|nrh|hnr|hrn>**: It generates a csv file describing the runtime experiments of the chessboard images and save it as <output_file_name> . The images used for the experiments are located at <input_base_path> directory and the order of the execution of the algorithm is defined by the string followed by **-e** (the string s defined next).
+  
+  
+  
 
+Both scripts for runtime analisys use a parameter **-e** for defining an order of the execution of the methods. It is a three character string where the first character defines the first algorithm to be executed, the second character defines the second algorithm to be executed and the third character defines the third algorithm to be executed. The available characters and their associated algorithm are described below:
+
+* **n**: Non-incremental contour computation algorithm. In this approach, each node of the max-tree of the input image is reconstructed and the contour is computed as described by Algorithm 2 from the paper.
+
+* **h**: Incremental contour computation algorithm. In this approach, the contour is computed using the incremental algorithm described in Algorithm 3 from the paper using hash-maps to represent sets.
+
+* **r**: Incremental contour computation algorithm. In this approach, the contour is computed using the incremental algorithm described in Algorithm 3 from the paper using red-black trees to represent sets.
+
+The generated CSV files contains the following columns:
+
+* **Empty column header**: There is an empty column header to represent the index of the experimentos. It goes from zero to number of images - 1.
+
+* **image**: Image filename 
+
+* **width**: Image width
+
+* **height**: Image height
+
+* **npixels**: number of pixels (computed as width $\times$ height) 
+
+* **runtime_contour_rb**: Runtime in milliseconds of the incremental algorithm for contour computation using red-black trees
+
+* **runtime_contour_hm**: Runtime in milliseconds of the incremental algoriithm for contour computation using hash-maps
+
+* **runtime_non_incr_contour**: Runtime in milliseconfs of the non-incremental algorithm for contour computation.
+
+The repository also contains two bash scripts which reproduces the dataset we reported in the paper and the result are available in [this google colab]([paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)[paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)). The scripts **run_gen_runtime_2.sh** and **run_gen_runtime_checkboard_2.sh** runs the scripts **gen_runtime_2.py** and **gen_runtime_checkboard_2.py**, respectively, twice for each available contour computation algorithm order. They generate 12 csv files which were used to perform the time analysis of our algorithm.
