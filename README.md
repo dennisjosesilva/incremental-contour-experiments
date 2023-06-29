@@ -29,7 +29,7 @@ $ conan create . morphotree/0.0.1@dennisjosesilva/dev
 
 ### 1.2. Building programs
 
-After the morphotree library is installed, we can compile the programs used to analyse our algorithm.  First, we should create a build directory where we will keep the binary files. To do so, using Linux, we can move to the path where the repository is download as follows:
+After the morphotree library is installed, we can compile the programs used to analyse our algorithm.  First, we should create a build directory where we will keep the binary files. To do so, using Linux, we can move to the path where the repository is downloaded as follows:
 
 ```bash
 cd path/to/repo/
@@ -108,7 +108,7 @@ The scripts to generate the ".csv" files used for the runtime analysis in the [G
   
   
 
-Both scripts for runtime analisys use a parameter **-e** for defining an order of the execution of the methods. It is a three character string where the first character defines the first algorithm to be executed, the second character defines the second algorithm to be executed and the third character defines the third algorithm to be executed. The available characters and their associated algorithm are described below:
+Both scripts for runtime analysis use a parameter **-e** for defining an order of the execution of the methods. It is a three character string where the first character defines the first algorithm to be executed, the second character defines the second algorithm to be executed and the third character defines the third algorithm to be executed. The available characters and their associated algorithm are described below:
 
 * **n**: Non-incremental contour computation algorithm. In this approach, each node of the max-tree of the input image is reconstructed and the contour is computed as described by Algorithm 2 from the paper.
 
@@ -134,4 +134,4 @@ The generated CSV files contains the following columns:
 
 * **runtime_non_incr_contour**: Runtime in milliseconfs of the non-incremental algorithm for contour computation.
 
-The repository also contains two bash scripts which reproduces the dataset we reported in the paper and the result are available in [this google colab]([paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)[paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)). The scripts **run_gen_runtime_2.sh** and **run_gen_runtime_checkboard_2.sh** runs the scripts **gen_runtime_2.py** and **gen_runtime_checkboard_2.py**, respectively, twice for each available contour computation algorithm order. They generate 12 csv files which were used to perform the time analysis of our algorithm.
+The repository also contains two bash scripts which reproduces the dataset we reported in the paper and the result are available in [this google colab]([paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)[paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)). The scripts **run_gen_runtime_2.sh** and **run_gen_runtime_checkboard_2.sh** runs the scripts **gen_runtime_2.py** and **gen_runtime_checkboard_2.py**, respectively, twice for each available contour computation algorithm order. They generate 12 csv files which were used to perform the time analysis of our algorithm in the paper.
