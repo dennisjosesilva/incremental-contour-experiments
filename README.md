@@ -15,7 +15,7 @@ There exist various algorithms that extract information and attributes of nodes 
 
 ## 1. Building
 
-The software needs a C++ compiler and [conan v2](https://conan.io/) to build.  It also depends on some Conan packages that can be installed manually using the instruction bellow.
+The software needs a C++ compiler and [conan v2](https://conan.io/) to build.  It also depends on some Conan packages that can be installed manually using the instruction below.
 
 ### 1.1. Manual dependency installation
 
@@ -134,4 +134,4 @@ The generated CSV files contain the following columns:
 
 * **runtime_non_incr_contour**: Runtime in milliseconds of the non-incremental algorithm for contour computation.
 
-The repository also contains two bash scripts which reproduce the dataset we reported in the paper and the result are available in [paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay)). The scripts **run_gen_runtime_2.sh** and **run_gen_runtime_checkboard_2.sh** runs the scripts **gen_runtime_2.py** and **gen_runtime_checkboard_2.py**, respectively, twice for each available contour computation algorithm order. They generate 12 csv files which were used to perform the time analysis of our algorithm in the paper.
+The repository also contains two bash scripts which reproduce the dataset we reported in the paper and the result are available in [paper-runtime-analysis - Google Drive](https://drive.google.com/drive/u/1/folders/1F8o781tyAaHEVwBRo01fqX4Wz9gK96ay). The scripts **run_gen_runtime_2.sh** and **run_gen_runtime_checkboard_2.sh** runs the scripts **gen_runtime_2.py** and **gen_runtime_checkboard_2.py**, respectively, twice for each available contour computation algorithm order. They generate 12 csv files which were used to perform the time analysis of our algorithm in the paper.
