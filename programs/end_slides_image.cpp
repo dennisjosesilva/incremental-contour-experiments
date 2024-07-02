@@ -53,16 +53,21 @@ int main(int argc, char *argv[])
   f = std::vector<uint8>(data, data + domain.numberOfPoints());
 
 
-  std::vector<uint8> output(domain.numberOfPoints()*3);
+  std::vector<uint8> outputContour(domain.numberOfPoints()*3);
+  std::vector<uint8> outputNode(domain.numberOfPoints()*3);
   I32Point p;
   for (p.y() = domain.top(); p.y() <= domain.bottom(); p.y()++) {
     for (p.x() = domain.left(); p.x() <= domain.right(); p.x()++) {
       uint32 pidx = domain.pointToIndex(p); 
       uint32 cpidx = pidx * 3;           // (coloured) for 3 channels
       
-      output[cpidx] = f[pidx];
-      output[cpidx+1] = f[pidx];
-      output[cpidx+2] = f[pidx];
+      outputContour[cpidx] = f[pidx];
+      outputContour[cpidx+1] = f[pidx];
+      outputContour[cpidx+2] = f[pidx];
+
+      outputNode[cpidx] = f[pidx];
+      outputNode[cpidx+1] = f[pidx];
+      outputNode[cpidx+2] = f[pidx];
     }
   }
 
@@ -74,18 +79,29 @@ int main(int argc, char *argv[])
   std::vector<std::unordered_set<uint32>> contours = 
     extractCountors(domain, f, std::make_shared<InfAdjacency4C>(domain), tree);
 
-  const std::unordered_set<uint32> &c = contours[
-    tree.smallComponent(domain.pointToIndex({226, 341}))->id()];
+  NodePtr node = tree.smallComponent(domain.pointToIndex({226, 341}));
+
+  const std::unordered_set<uint32> &c = contours[node->id()];
   for (const uint32 pidx : c) {
     uint32 cpidx = pidx * 3;           // (coloured) for 3 channels
     
-    output[cpidx] =  255;
-    output[cpidx+1] = 0;
-    output[cpidx+2] = 0;
+    outputContour[cpidx] =  255;
+    outputContour[cpidx+1] = 0;
+    outputContour[cpidx+2] = 0;
   }
 
 
-  stbi_write_png("goldhill-highlight.png", width, height, 3, output.data(), 0);
+  std::vector<uint32> nodePixels = node->reconstruct();    
+  for (const uint32 pidx : nodePixels) {
+    uint32 cpidx = pidx * 3;           // (coloured) for 3 channels
+    
+    outputNode[cpidx] =  255;
+    outputNode[cpidx+1] = 0;
+    outputNode[cpidx+2] = 0;
+  }
+
+  stbi_write_png("goldhill-highlight-contour.png", width, height, 3, outputContour.data(), 0);
+  stbi_write_png("goldhill-highlight-node.png", width, height, 3, outputNode.data(), 0);
   stbi_image_free(data);
   return 0;
 }
