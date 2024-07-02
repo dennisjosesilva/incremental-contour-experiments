@@ -243,3 +243,8 @@ pyrightconfig.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,cmake,python,visualstudiocode
+
+# =====================================
+# Remove dataset from repository
+# ======================================
+dataset-icdar/*
