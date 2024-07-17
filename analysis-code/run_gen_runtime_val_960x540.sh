@@ -1,8 +1,8 @@
-python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/960x540/validation/runtime_0.csv" -i "../dataset-icdar/960x540/validation" -e rhn
-sleep 5
-python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/960x540/validation/runtime_1.csv" -i "../dataset-icdar/960x540/validation" -e rnh
-sleep 5
-python gen_runtime_by_batchl.py -o "runtime-icdar-resolutions/960x540/validation/runtime_2.csv" -i "../dataset-icdar/960x540/validation" -e nhr
+# python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/960x540/validation/runtime_0.csv" -i "../dataset-icdar/960x540/validation" -e rhn
+# sleep 5
+# python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/960x540/validation/runtime_1.csv" -i "../dataset-icdar/960x540/validation" -e rnh
+# sleep 5
+python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/960x540/validation/runtime_2.csv" -i "../dataset-icdar/960x540/validation" -e nhr
 sleep 5
 python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/960x540/validation/runtime_3.csv" -i "../dataset-icdar/960x540/validation" -e nrh
 sleep 5

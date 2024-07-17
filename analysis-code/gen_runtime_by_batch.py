@@ -133,51 +133,51 @@ def main(OUTPUT_FILE_NAME= "runtime-icdar-val/runtime_0.csv",
     nnodes_max_tree.append(max_tree_number_of_nodes(f))
 
     if EXECUTATION_ORDER == "rhn":
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_rbt.append(pcall.run_perf_incr_contour_rbt())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_hm.append(pcall.run_perf_incr_contour_hm())
-      time.sleep(5)
+      time.sleep(2)
       runtime_non_incr_contour.append(pcall.run_perf_non_incr_contour())
     
     elif EXECUTATION_ORDER == "rnh":
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_rbt.append(pcall.run_perf_incr_contour_rbt())
-      time.sleep(5)
+      time.sleep(2)
       runtime_non_incr_contour.append(pcall.run_perf_non_incr_contour())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_hm.append(pcall.run_perf_incr_contour_hm())
     
     elif EXECUTATION_ORDER == "nhr":
-      time.sleep(5)
+      time.sleep(2)
       runtime_non_incr_contour.append(pcall.run_perf_non_incr_contour())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_hm.append(pcall.run_perf_incr_contour_hm())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_rbt.append(pcall.run_perf_incr_contour_rbt())      
       
     elif EXECUTATION_ORDER == "nrh":
-      time.sleep(5)
+      time.sleep(2)
       runtime_non_incr_contour.append(pcall.run_perf_non_incr_contour())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_rbt.append(pcall.run_perf_incr_contour_rbt())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_hm.append(pcall.run_perf_incr_contour_hm())
     
     elif EXECUTATION_ORDER == "hnr":
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_hm.append(pcall.run_perf_incr_contour_hm())
-      time.sleep(5)
+      time.sleep(2)
       runtime_non_incr_contour.append(pcall.run_perf_non_incr_contour())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_rbt.append(pcall.run_perf_incr_contour_rbt())
       
     elif EXECUTATION_ORDER == "hrn":
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_hm.append(pcall.run_perf_incr_contour_hm())
-      time.sleep(5)
+      time.sleep(2)
       runtime_incr_contour_rbt.append(pcall.run_perf_incr_contour_rbt())
-      time.sleep(5)
+      time.sleep(2)
       runtime_non_incr_contour.append(pcall.run_perf_non_incr_contour())
       
   df = pd.DataFrame(data={

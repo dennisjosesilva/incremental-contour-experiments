@@ -2,7 +2,7 @@ python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/120x68/test50/runti
 sleep 5
 python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/120x68/test50/runtime_1.csv" -i "../dataset-icdar/120x68/test50" -e rnh
 sleep 5
-python gen_runtime_by_batchl.py -o "runtime-icdar-resolutions/120x68/test50/runtime_2.csv" -i "../dataset-icdar/120x68/test50" -e nhr
+python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/120x68/test50/runtime_2.csv" -i "../dataset-icdar/120x68/test50" -e nhr
 sleep 5
 python gen_runtime_by_batch.py -o "runtime-icdar-resolutions/120x68/test50/runtime_3.csv" -i "../dataset-icdar/120x68/test50" -e nrh
 sleep 5
