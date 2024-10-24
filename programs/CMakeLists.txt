@@ -46,11 +46,17 @@ target_link_libraries(check_contour_algorithms
   morphotree::morphotree
   stb::stb)
 
+add_executable(paint_contour paint_contour.cpp)
+  target_link_libraries(paint_contour 
+    morphotree::morphotree
+    stb::stb)
+
 add_executable(end_slides_image end_slides_image.cpp)
 target_link_libraries(end_slides_image 
   morphotree::morphotree
   stb::stb)
 
+  
   add_executable(mtree_data mtree_data.cpp)
   target_link_libraries(mtree_data 
     morphotree::morphotree
