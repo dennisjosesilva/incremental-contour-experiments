@@ -248,5 +248,6 @@ pyrightconfig.json
 # Remove dataset from repository
 # ======================================
 dataset-icdar/*
+out/*
 !dataset-icdar/*.py
 !dataset-icdar/*.sh
