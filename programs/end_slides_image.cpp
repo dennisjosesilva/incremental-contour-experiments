@@ -100,6 +100,8 @@ int main(int argc, char *argv[])
     outputNode[cpidx+2] = 0;
   }
 
+
+
   stbi_write_png("goldhill-highlight-contour.png", width, height, 3, outputContour.data(), 0);
   stbi_write_png("goldhill-highlight-node.png", width, height, 3, outputNode.data(), 0);
   stbi_image_free(data);

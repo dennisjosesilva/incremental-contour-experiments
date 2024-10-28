@@ -153,21 +153,6 @@ int main(int argc, char *argv[])
 
   std::vector<uint8> outputContour(domain.numberOfPoints()*3);
   std::vector<uint8> nodeImg(domain.numberOfPoints() * 3);
-  I32Point p;
-  for (p.y() = domain.top(); p.y() <= domain.bottom(); p.y()++) {
-    for (p.x() = domain.left(); p.x() <= domain.right(); p.x()++) {
-      uint32 pidx = domain.pointToIndex(p);
-      uint32 cpidx = pidx * 3;           // (color) for 3 channels;
-
-      outputContour[cpidx] = f[pidx];
-      outputContour[cpidx+1] = f[pidx];
-      outputContour[cpidx+2] = f[pidx];
-
-      nodeImg[cpidx] = f[pidx];
-      nodeImg[cpidx+1] = f[pidx];
-      nodeImg[cpidx+2] = f[pidx];
-    }
-  }
 
   MTree tree = buildMaxTree(f, std::make_unique<Adjacency8C>(domain));
 
@@ -176,30 +161,68 @@ int main(int argc, char *argv[])
     tree.idirectFilter([&area, &args](NodePtr node) { return area[node->id()] > args.area; });
   }
   
+  std::vector<uint8> f_filtered = tree.reconstructImage();
+  I32Point p;
+  for (p.y() = domain.top(); p.y() <= domain.bottom(); p.y()++) {
+    for (p.x() = domain.left(); p.x() <= domain.right(); p.x()++) {
+      uint32 pidx = domain.pointToIndex(p);
+      uint32 cpidx = pidx * 3;           // (color) for 3 channels;
+
+      outputContour[cpidx] = f_filtered[pidx];
+      outputContour[cpidx+1] = f_filtered[pidx];
+      outputContour[cpidx+2] = f_filtered[pidx];
+
+      nodeImg[cpidx] = f_filtered[pidx];
+      nodeImg[cpidx+1] = f_filtered[pidx];
+      nodeImg[cpidx+2] = f_filtered[pidx];
+    }
+  }
+
+
   std::vector<std::unordered_set<uint32>> contours = 
     extractCountors(domain, f, std::make_shared<InfAdjacency4C>(domain), tree);
 
 
   int maxChildren = 0;
   uint32 nodeId = 0;
-  tree.traverseByLevel([&maxChildren, &nodeId, &args](NodePtr node){ 
-    //if (nodeId == 0) {
-      // if (node->children().size() >= args.ncontours) {
-      //   maxChildren = node->children().size();
-      //   nodeId = node->id();
-      // }
-      if (node->children().size() >= maxChildren) {
-        maxChildren = node->children().size();
-        nodeId = node->id();
-      }
-    //}
-  });
+
+  std::vector<NodePtr> selectedNodes;
+  
+  // val_001
+  // std::vector<I32Point> points = {
+  //   {131, 302}, {191, 304}, {248, 307}
+  // };
+
+  // val_188
+  std::vector<I32Point> points = {
+    {135, 623}, {176, 622}, {238, 619}, {294, 622}, {362, 246}, {31, 664}
+  };
+
+  for (auto &p : points) {
+    selectedNodes.push_back(tree.smallComponent(domain.pointToIndex(p)));
+  }
+
+  // tree.traverseByLevel([&maxChildren, &nodeId, &args, &selectedNodes, &points](NodePtr node){ 
+  //   //if (nodeId == 0) {
+  //     // if (node->children().size() >= args.ncontours) {
+  //     //   maxChildren = node->children().size();
+  //     //   nodeId = node->id();
+  //     // }
+  //     // if (node->children().size() >= maxChildren) {
+  //     //   maxChildren = node->children().size();
+  //     //   nodeId = node->id();
+  //     // }
+  //   //}
+
+  //   if (100 <= node->level() && node->level() <= 110)
+  //     selectedNodes.push_back(node);
+  // });
 
   std::cout << "\n" << nodeId << " : " << maxChildren << "\n";
 
   NodePtr node = tree.node(nodeId);
   int cmIdx = 0;                            // colour map index
-  for (NodePtr c : node->children()) {
+  for (NodePtr c : selectedNodes) {
     // paint contours
 
     float hue = (static_cast<float>(cmIdx) / static_cast<float>(maxChildren)) * 360.0f; // hue in degrees
@@ -222,16 +245,15 @@ int main(int argc, char *argv[])
     cmIdx++;
   }
 
-
-
   std::string contourImageFile = args.outImage;
   contourImageFile.insert(contourImageFile.size()-4, "-contour");
   stbi_write_png(contourImageFile.c_str(), width, height, 3, outputContour.data(), 0);
 
-
   std::string nodeImageFile = args.outImage;
   nodeImageFile.insert(nodeImageFile.size()-4, "-node");
   stbi_write_png(nodeImageFile.c_str(), width, height, 3, nodeImg.data(), 0);
+
+  std::cout << "number of nodes: " << tree.numberOfNodes() << ", number of displayed nodes: " << selectedNodes.size() << "\n";
 
   return 0;
 }
